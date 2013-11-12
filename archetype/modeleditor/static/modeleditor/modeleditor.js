@@ -365,9 +365,8 @@ function keyup() {
 }
 
 // app starts here
-svg.on('mousedown', mousedown)
-    .on('mousemove', mousemove)
-    .on('mouseup', mouseup);
+svg.on('mousemove', mousemove)
+   .on('mouseup', mouseup);
 d3.select(window)
     .on('keydown', keydown)
     .on('keyup', keyup);

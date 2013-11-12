@@ -14,12 +14,14 @@
         <input type="text" class="form-control" placeholder="Search">
       </div>
     </form>
-    {% for dataset in datasets %}
-    <div class="dataset">
-      <span class="glyphicon glyphicon-{{ dataset.icon }}"></span>
-      {{ dataset.name }}
+    <div id="datasetselectorlist">
+      {% for dataset in datasets %}
+      <div class="dataset">
+	<span class="glyphicon glyphicon-{{ dataset.icon }}"></span>
+	{{ dataset.name }}
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
   <div id="modelcontainer"></div>
 </div>
@@ -28,4 +30,21 @@
 
 {% block content_footer %}
 <script src="{% static 'modeleditor/modeleditor.js'%}"></script>
+<script>
+  $("#datasetselectorlist").hide();
+  $("#datasetselectorlist").slideDown(750);
+  $("#datasetselector").draggable();
+  $(".dataset").draggable({helper:'clone'});  
+  $("#modelcontainer").droppable({
+    accept: ".dataset",
+    drop: function(event,ui){
+      node = {id: ++lastNodeId, reflexive: false};
+      node.x = event.pageX-$("#modelcontainer>svg")[0].offsetLeft;
+      node.y = event.pageY-$("#modelcontainer>svg")[0].offsetTop-$(".starter-template")[0].offsetTop;
+      nodes.push(node);
+      restart();
+    }
+  });
+
+</script>
 {% endblock %}
