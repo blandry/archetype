@@ -7,14 +7,23 @@
 
 {% block content %}
 
-<div class="container">
-  
-  <div class="starter-template">
-    <h1>Create your crime model</h1>
-    <div id="modelcontainer"></div>
+<div class="starter-template">
+  <div id="datasetselector">
+    <form class="datasetselectorform">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search">
+      </div>
+    </form>
+    {% for dataset in datasets %}
+    <div class="dataset">
+      <span class="glyphicon glyphicon-{{ dataset.icon }}"></span>
+      {{ dataset.name }}
+    </div>
+    {% endfor %}
   </div>
+  <div id="modelcontainer"></div>
+</div>
   
-</div><!-- /.container -->
 {% endblock %}
 
 {% block content_footer %}

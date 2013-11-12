@@ -1,7 +1,10 @@
 // set up SVG for D3
 var width  = 960,
 height = 500,
-colors = d3.scale.category10();
+//colors = d3.scale.category10();
+colors = function() {
+    return "#3F4450";
+}
 
 var svg = d3.select('#modelcontainer')
     .append('svg')
@@ -146,7 +149,7 @@ function restart() {
 
     g.append('svg:circle')
 	.attr('class', 'node')
-	.attr('r', 12)
+	.attr('r', 20)
 	.style('fill', function(d) { return (d === selected_node) ? d3.rgb(colors(d.id)).brighter().toString() : colors(d.id); })
 	.style('stroke', function(d) { return d3.rgb(colors(d.id)).darker().toString(); })
 	.classed('reflexive', function(d) { return d.reflexive; })

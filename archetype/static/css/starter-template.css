@@ -1,7 +1,70 @@
 body {
-  padding-top: 50px;
+  padding-top: 130px;
 }
 .starter-template {
   padding: 40px 15px;
   text-align: center;
+  position: relative;
+}
+
+.navbar-inverse {
+  background-color: #00AEEF;
+  border-color: #00AEEF;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+  background-color: #00AEEF;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #3F4450;
+}
+
+.navbar-inverse .navbar-brand {
+  color: #3F4450;
+}
+
+.navbar-inverse .logo {
+  height: 100px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 30px;
+}
+
+.navbar-nav {
+  position: absolute;
+  left: 125px;
+  bottom: 0px;
+}
+
+#datasetselector {
+  position: absolute;
+  left: 50px;
+  top: 50px;
+  width: 350px;
+  background-color: #3F4450;
+  padding: 12px;
+  box-shadow: 10px 10px 5px #888;
+}
+
+.datasetselectorform {
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.datasetselectorform .form-control {
+  background-color: #3F4450;
+  border-radius: 30px;
+  color: #FFFFFF;
+}
+
+.dataset {
+  color: #FFFFFF;
+  padding: 10px;
+  text-align: left;
+}
+
+.dataset .glyphicon {
+  padding-right: 20px;
 }
