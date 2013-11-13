@@ -6,6 +6,10 @@ colors = function() {
     return "#3F4450";
 }
 
+getGlyphicon = function(d) {
+    return '/static/glyphicons/'+d.icon;
+}
+
 var svg = d3.select('#modelcontainer')
     .append('svg')
     .attr('width', width)
@@ -16,9 +20,9 @@ var svg = d3.select('#modelcontainer')
 //  - reflexive edges are indicated on the node (as a bold black circle).
 //  - links are always source < target; edge directions are set by 'left' and 'right'.
 var nodes = [
-    {id: 0, reflexive: false},
-    {id: 1, reflexive: true },
-    {id: 2, reflexive: false}
+    {id: 0, reflexive: false, icon: 'glyphicons_002_dog.png'},
+    {id: 1, reflexive: true, icon: 'glyphicons_005_car.png'},
+    {id: 2, reflexive: false, icon: 'glyphicons_257_sheriffs_star.png'}
 ],
 lastNodeId = 2,
   links = [
@@ -147,11 +151,13 @@ function restart() {
   // add new nodes
     var g = circle.enter().append('svg:g');
 
-    g.append('svg:circle')
-	.attr('class', 'node')
-	.attr('r', 20)
-	.style('fill', function(d) { return (d === selected_node) ? d3.rgb(colors(d.id)).brighter().toString() : colors(d.id); })
-	.style('stroke', function(d) { return d3.rgb(colors(d.id)).darker().toString(); })
+    g.append('svg:image')
+	.attr('xlink:href', function(d) { return getGlyphicon(d); })
+        .attr('x', -15)
+        .attr('y', -15)
+        .attr('width', 31)
+        .attr('height', 31)
+	.style('padding', 10)
 	.classed('reflexive', function(d) { return d.reflexive; })
 	.on('mouseover', function(d) {
 	    if(!mousedown_node || d === mousedown_node) return;
@@ -226,13 +232,6 @@ function restart() {
 	    selected_node = null;
 	    restart();
 	});
-
-  // show node IDs
-    g.append('svg:text')
-	.attr('x', 0)
-	.attr('y', 4)
-	.attr('class', 'id')
-	.text(function(d) { return d.id; });
 
   // remove old nodes
     circle.exit().remove();

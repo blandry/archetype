@@ -67,6 +67,7 @@ body {
   background-color: #3F4450;
 }
 
-.dataset .glyphicon {
+.dataset img {
   padding-right: 20px;
+  -webkit-filter: invert(100%); 
 }

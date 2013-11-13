@@ -16,8 +16,8 @@
     </form>
     <div id="datasetselectorlist">
       {% for dataset in datasets %}
-      <div class="dataset">
-	<span class="glyphicon glyphicon-{{ dataset.icon }}"></span>
+      <div class="dataset" icon="{{ dataset.icon }}">
+	<img src="{% static 'glyphicons/' %}{{ dataset.icon }}">
 	{{ dataset.name }}
       </div>
       {% endfor %}
@@ -41,6 +41,7 @@
       node = {id: ++lastNodeId, reflexive: false};
       node.x = event.pageX-$("#modelcontainer>svg")[0].offsetLeft;
       node.y = event.pageY-$("#modelcontainer>svg")[0].offsetTop-$(".starter-template")[0].offsetTop;
+      node.icon = ui.draggable.attr("icon");
       nodes.push(node);
       restart();
     }
