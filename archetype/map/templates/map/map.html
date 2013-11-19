@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content_header %}
+{% load staticfiles %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="starter-template">
+  <div class="row">
+    <div class="col-md-3">
+    <div class="col-md-6">
+      <div id="mapcontainer"></div>
+    </div>
+    <div class="col-md-3">
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content_footer %}
+<script src="{% static 'map/map.js'%}"></script>
+{% endblock %}

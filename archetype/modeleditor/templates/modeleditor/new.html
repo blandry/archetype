@@ -8,24 +8,39 @@
 {% block content %}
 
 <div class="starter-template">
-  <div id="datasetselector">
-    <form class="datasetselectorform">
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Search">
+  <div class="row">
+    <div class="col-md-3">
+      <div id="datasetselector">
+	<form class="datasetselectorform">
+	  <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+	  </div>
+	</form>
+	<div id="datasetselectorlist">
+	  {% for dataset in datasets %}
+	  <div class="dataset" icon="{{ dataset.icon }}">
+	    <img src="{% static 'glyphicons/' %}{{ dataset.icon }}">
+	    {{ dataset.name }}
+	  </div>
+	  {% endfor %}
+	</div>
       </div>
-    </form>
-    <div id="datasetselectorlist">
-      {% for dataset in datasets %}
-      <div class="dataset" icon="{{ dataset.icon }}">
-	<img src="{% static 'glyphicons/' %}{{ dataset.icon }}">
-	{{ dataset.name }}
+    </div>
+    <div class="col-md-6">
+      <div id="modelcontainer"></div>
+    </div>
+    <div class="col-md-3">
+      <div class="alert alert-info alert-dismissable">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	<strong>Instructions</strong> Drag some of the datasets from the explorer on the left onto the graph and create a model for the possible causes of the selected crime.
       </div>
-      {% endfor %}
+      <div class="alert alert-warning alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>Disclaimer!</strong> This is simply a mockup. The is no way of actually using the model later on.
+      </div>
     </div>
   </div>
-  <div id="modelcontainer"></div>
 </div>
-  
 {% endblock %}
 
 {% block content_footer %}
@@ -33,14 +48,17 @@
 <script>
   $("#datasetselectorlist").hide();
   $("#datasetselectorlist").slideDown(750);
-  $("#datasetselector").draggable();
   $(".dataset").draggable({helper:'clone'});  
   $("#modelcontainer").droppable({
     accept: ".dataset",
     drop: function(event,ui){
       node = {id: ++lastNodeId, reflexive: false};
-      node.x = event.pageX-$("#modelcontainer>svg")[0].offsetLeft;
-      node.y = event.pageY-$("#modelcontainer>svg")[0].offsetTop-$(".starter-template")[0].offsetTop;
+      node.x = event.pageX-$("#modelcontainer>svg").offset().left;
+      node.y = event.pageY-$("#modelcontainer>svg").offset().top;
+      node.ximg = -10;
+      node.yimg = -10;
+      node.width = 26;
+      node.height = 26;
       node.icon = ui.draggable.attr("icon");
       nodes.push(node);
       restart();

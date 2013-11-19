@@ -1,6 +1,6 @@
 // set up SVG for D3
-var width  = 960,
-height = 500,
+var width  = $("#modelcontainer").width()-5,
+height = 525,
 //colors = d3.scale.category10();
 colors = function() {
     return "#3F4450";
@@ -20,15 +20,10 @@ var svg = d3.select('#modelcontainer')
 //  - reflexive edges are indicated on the node (as a bold black circle).
 //  - links are always source < target; edge directions are set by 'left' and 'right'.
 var nodes = [
-    {id: 0, reflexive: false, icon: 'glyphicons_002_dog.png'},
-    {id: 1, reflexive: true, icon: 'glyphicons_005_car.png'},
-    {id: 2, reflexive: false, icon: 'glyphicons_257_sheriffs_star.png'}
+    {id: 0, reflexive: false, icon: 'robbery.svg', ximg: -60, yimg: -60, width: 120, height: 120},
 ],
 lastNodeId = 2,
-  links = [
-      {source: nodes[0], target: nodes[1], left: false, right: true },
-      {source: nodes[1], target: nodes[2], left: false, right: true }
-  ];
+  links = [];
 
 // init D3 force layout
 var force = d3.layout.force()
@@ -36,7 +31,7 @@ var force = d3.layout.force()
     .links(links)
     .size([width, height])
     .linkDistance(150)
-    .charge(-500)
+    .charge(-900)
     .on('tick', tick)
 
 // define arrow markers for graph links
@@ -49,7 +44,7 @@ svg.append('svg:defs').append('svg:marker')
     .attr('orient', 'auto')
     .append('svg:path')
     .attr('d', 'M0,-5L10,0L0,5')
-    .attr('fill', '#000');
+    .attr('fill', '#3F4450');
 
 svg.append('svg:defs').append('svg:marker')
     .attr('id', 'start-arrow')
@@ -60,12 +55,12 @@ svg.append('svg:defs').append('svg:marker')
     .attr('orient', 'auto')
     .append('svg:path')
     .attr('d', 'M10,-5L0,0L10,5')
-    .attr('fill', '#000');
+    .attr('fill', '#3F4450');
 
 // line displayed when dragging new nodes
 var drag_line = svg.append('svg:path')
     .attr('class', 'link dragline hidden')
-    .attr('d', 'M0,0L0,0');
+    .attr('d', 'M0,0L0,0')
 
 // handles to link and node element groups
 var path = svg.append('svg:g').selectAll('path'),
@@ -96,7 +91,7 @@ function tick() {
         sourcePadding = d.left ? 17 : 12,
         targetPadding = d.right ? 17 : 12,
         sourceX = d.source.x + (sourcePadding * normX),
-        sourceY = d.source.y + (sourcePadding * normY),
+	sourceY = d.source.y + (sourcePadding * normY),
         targetX = d.target.x - (targetPadding * normX),
         targetY = d.target.y - (targetPadding * normY);
 	return 'M' + sourceX + ',' + sourceY + 'L' + targetX + ',' + targetY;
@@ -153,18 +148,30 @@ function restart() {
 
     g.append('svg:image')
 	.attr('xlink:href', function(d) { return getGlyphicon(d); })
-        .attr('x', -15)
-        .attr('y', -15)
-        .attr('width', 31)
-        .attr('height', 31)
+        .attr('x', function(d) { return d.ximg })
+        .attr('y', function(d) { return d.yimg })
+        .attr('width', function(d) { return d.width })
+        .attr('height', function(d) { return d.height })
 	.style('padding', 10)
+	.attr('opacity', 0.75)
 	.classed('reflexive', function(d) { return d.reflexive; })
 	.on('mouseover', function(d) {
+
+	    d3.select(this).append("text")
+		.attr("class", "hover")
+		.attr('transform', function(d){ 
+		    return 'translate(5, -10)';
+		})
+		.text(d.id);
+
 	    if(!mousedown_node || d === mousedown_node) return;
       // enlarge target node
 	    d3.select(this).attr('transform', 'scale(1.1)');
 	})
 	.on('mouseout', function(d) {
+
+//	    d3.select(this).select("text.hover").remove();
+
 	    if(!mousedown_node || d === mousedown_node) return;
       // unenlarge target node
 	    d3.select(this).attr('transform', '');
