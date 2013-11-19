@@ -2,7 +2,7 @@
 
 {% block content_header %}
 {% load staticfiles %}
-
+<link rel="stylesheet" href="{% static 'map/map.css'%}">
 {% endblock %}
 
 {% block content %}
@@ -10,15 +10,36 @@
 <div class="starter-template">
   <div class="row">
     <div class="col-md-3">
+      <div class="alert alert-info alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	<img src="{% static 'glyphicons/robbery.svg' %}" /></br></br>
+        <strong>Placeholder</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec nisi imperdiet, pulvinar elit a, sodales orci. Donec convallis, libero ac interdum dignissim, risus libero dapibus nunc, vel egestas lectus velit at ligula. Nullam iaculis erat nulla, a vulputate ante mollis at. Vestibulum a euismod mauris. Aenean quam orci, blandit vel orci eu, dictum semper sapien. Maecenas congue, dolor a posuere tempor, ligula magna molestie dui, sit amet consequat est metus et ipsum. Suspendisse eleifend vestibulum odio non placerat. Nulla nec lectus sollicitudin, vulputate nulla in, aliquam odio. Phasellus feugiat velit enim, eu cursus libero mattis eu.
+      </div>
+    </div>
     <div class="col-md-6">
       <div id="mapcontainer"></div>
     </div>
     <div class="col-md-3">
+      <div id="controlscontainer">
+	<div class="alert alert-info alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <strong>Controls</strong> Drag some of the datasets from the explorer on the left onto the graph and creat a model for the possible causes of the selected crime.
+	</div>
+      </div>
+      <div class="alert alert-info alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>Instructions</strong> Drag some of the datasets from the explorer on the left onto the graph and creat a model for the possible causes of the selected crime.
+      </div>
+      <div class="alert alert-warning alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>Disclaimer!</strong> This is simply a mockup. The is no way of actually perform inference.
+      </div>
     </div>
   </div>
 </div>
 {% endblock %}
 
 {% block content_footer %}
+<script src="http://d3js.org/topojson.v1.min.js"></script>
 <script src="{% static 'map/map.js'%}"></script>
 {% endblock %}
