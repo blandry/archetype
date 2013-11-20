@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content_header %}
+{% load staticfiles %}
+{% endblock %}
+
+{% block content %}
+
+<div class="starter-template container home">
+  <div class="row">
+    <div class="col-lg-6">
+      <img  src="{% static 'noun_project_2651.svg' %}">
+      <h2>Model Editor</h2>
+      <p>Create models of crimes by linking different datasets together. The model you create show what factor should be taken into accoutn as a possible cause for a crime trend.</p>
+      <p><a class="btn btn-default" href="/modeleditor/new" role="button">New Model &raquo;</a></p>
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-6">
+      <img src="{% static 'noun_project_9169.svg' %}">
+      <h2>Inference Map</h2>
+      <p>Use this map to predict the effects of allocating more or less resources in a specific area using a model you have built in the Model Editor.</p>
+      <p><a class="btn btn-default" href="/map" role="button">Access Map &raquo;</a></p>
+    </div><!-- /.col-lg-4 -->
+  </div>
+</div>
+{% endblock %}
+
+{% block content_footer %}
+<div class="footer">
+<p><a href="http://thenounproject.com/noun/site-map/#icon-No2651" target="_blank">Site Map</a> designed by <a href="http://thenounproject.com/ser.tween" target="_blank">Sergey Bakin</a> from The Noun Project</p>
+<p><a href="http://thenounproject.com/noun/map/#icon-No9169" target="_blank">Map</a> designed by <a href="http://thenounproject.com/crisdobbins" target="_blank">Cris Dobbins</a> from The Noun Project</p>
+</div>
+{% endblock %}

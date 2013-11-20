@@ -10,29 +10,42 @@
 <div class="starter-template">
   <div class="row">
     <div class="col-md-3">
-      <div class="alert alert-info alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-	<img src="{% static 'glyphicons/robbery.svg' %}" /></br></br>
-        <strong>Placeholder</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec nisi imperdiet, pulvinar elit a, sodales orci. Donec convallis, libero ac interdum dignissim, risus libero dapibus nunc, vel egestas lectus velit at ligula. Nullam iaculis erat nulla, a vulputate ante mollis at. Vestibulum a euismod mauris. Aenean quam orci, blandit vel orci eu, dictum semper sapien. Maecenas congue, dolor a posuere tempor, ligula magna molestie dui, sit amet consequat est metus et ipsum. Suspendisse eleifend vestibulum odio non placerat. Nulla nec lectus sollicitudin, vulputate nulla in, aliquam odio. Phasellus feugiat velit enim, eu cursus libero mattis eu.
+      <div class="">
+	</br>
+	<img src="{% static 'glyphicons/robbery.svg' %}" style="width: 150px;"/></br></br><strong>Crime:</strong> Robbery</br>
+	</br>
+	</br>
+      </div>
+      <div id="controls" class="alert alert-info"></br></br>
+	Number of police officers</br>
+	<img src="{% static 'glyphicons/glyphicons_257_sheriffs_star.png' %}{{ dataset.icon }}">
+        <input type="text" id="slider1" value="" data-slider-min="-20" data-slider-max="20" data-slider-step="1" data-slider-value="-20" data-slider-orientation="horizontal" data-slider-selection="after" data-slider-tooltip="hide"></br></br>
+	Number of surveillance cameras</br>
+	<img src="{% static 'glyphicons/glyphicons_366_security_camera.png' %}{{ dataset.icon }}">
+<input type="text" id="slider2" value="" data-slider-min="-20" data-slider-max="20" data-slider-step="1" data-slider-value="-20" data-slider-orientation="horizontal" data-slider-selection="after" data-slider-tooltip="hide"></br></br>
+        Number of police stations</br>
+	<img src="{% static 'glyphicons/glyphicons_089_building.png' %}{{ dataset.icon }}">
+        <input type="text" id="slider3" value="" data-slider-min="-20" data-slider-max="20" data-slider-step="1" data-slider-value="-20" data-slider-orientation="horizontal" data-slider-selection="after" data-slider-tooltip="hide"></br></br></br>
       </div>
     </div>
     <div class="col-md-6">
       <div id="mapcontainer"></div>
     </div>
     <div class="col-md-3">
-      <div id="controlscontainer">
-	<div class="alert alert-info alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <strong>Controls</strong> Drag some of the datasets from the explorer on the left onto the graph and creat a model for the possible causes of the selected crime.
-	</div>
+      <div id="stats">
+	</br></br>
+	<img src="{% static 'noun_project_4298.svg' %}" style="
+    width: 200px;
+    height: 200px;"/>
+	</br>
+	</br>
+	</br>
       </div>
       <div class="alert alert-info alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <strong>Instructions</strong> Drag some of the datasets from the explorer on the left onto the graph and creat a model for the possible causes of the selected crime.
+        <strong>Instructions</strong> Click on one of the precinct and adjust the ammount of resources in it using the controls on the left. Archetype will then infer the impact of your changes automatically.
       </div>
       <div class="alert alert-warning alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <strong>Disclaimer!</strong> This is simply a mockup. The is no way of actually perform inference.
+        <strong>Disclaimer!</strong> This is simply a mockup. It won't perform inference so the map will NOT change.
       </div>
     </div>
   </div>
@@ -42,4 +55,9 @@
 {% block content_footer %}
 <script src="http://d3js.org/topojson.v1.min.js"></script>
 <script src="{% static 'map/map.js'%}"></script>
+<script>
+$('#slider1').slider();
+$('#slider2').slider();
+$('#slider3').slider();
+</script>
 {% endblock %}

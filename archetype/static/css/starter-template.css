@@ -106,3 +106,12 @@ path.link {
 .q6-9 { fill:rgb(33,113,181); }
 .q7-9 { fill:rgb(8,81,156); }
 .q8-9 { fill:rgb(8,48,107); }
+
+.home {
+    padding-top: 75px;
+    padding-bottom: 200px;
+}
+
+.footer {
+    text-align: center;
+}

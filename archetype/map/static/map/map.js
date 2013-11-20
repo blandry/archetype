@@ -79,9 +79,14 @@ function select(){
     if (centered){
 	g.selectAll("path").style("fill", "");
 	centered.style("fill", "red");
-	$("#controlscontainer").fadeOut(1000).html("<div class='alert alert-info alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><strong>Instructions</strong> Drag some of the datasets from the explorer on the left onto the graph and creat a model for the possible causes of the selected crime.</div>").fadeIn(1000);
+	$("#slider1").slider('setValue', getRandom(-20,20));
+	$("#slider2").slider('setValue', getRandom(-20,20));
+	$("#slider3").slider('setValue', getRandom(-20,20));
     } else {
 	g.selectAll("path").style("fill", "");
+	$("#slider1").slider('setValue', -20);
+        $("#slider2").slider('setValue', -20);
+	$("#slider3").slider('setValue', -20);
     }
 
 };
